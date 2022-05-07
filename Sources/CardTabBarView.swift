@@ -10,6 +10,7 @@ import UIKit
 class CardTabBarView: UITabBar {
     fileprivate enum CardTabBarViewUI {
         static let padding: CGFloat = 8
+        static let largePadding: CGFloat = 90
     }
     
     // MARK: - Properties
@@ -74,37 +75,43 @@ class CardTabBarView: UITabBar {
 
     // MARK: - UI
     private func setupUI() {
+        
         barTintColor = .barTintColor
+        
         backgroundColor = .backgroundColor
         tintColor = .label
         indicatorColor = .tintColor
        
         backgroundImage = UIImage()
-        shadowImage = UIImage()
+
         setupConstraint()
     }
 
     private func setupConstraint() {
-        addSubview(backgroundShadowView)
+ 
         addSubview(container)
         container.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CardTabBarViewUI.padding),
-            container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CardTabBarViewUI.padding),
-            container.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -CardTabBarViewUI.padding),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CardTabBarViewUI.largePadding),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CardTabBarViewUI.largePadding),
+            container.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 4), //距离底部的高度
             container.heightAnchor.constraint(equalToConstant: 60),
 
             stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             stackView.topAnchor.constraint(equalTo: container.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: CardTabBarViewUI.padding),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -CardTabBarViewUI.padding),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -0),
             
-            backgroundShadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundShadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundShadowView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            backgroundShadowView.topAnchor.constraint(equalTo: topAnchor, constant: -40)
+//            backgroundShadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            backgroundShadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            backgroundShadowView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            backgroundShadowView.topAnchor.constraint(equalTo: topAnchor, constant: -40)
+            
+
         ])
+        
+
     }
 
     func select(at index: Int) {
@@ -147,8 +154,8 @@ class CardTabBarView: UITabBar {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 13
-        layer.shadowOpacity = 0.05
+        layer.shadowRadius = 10
+        layer.shadowOpacity = 0
     }
 
     // MARK: - Actions
@@ -181,3 +188,4 @@ public extension UITabBar {
         }
     }
 }
+

@@ -12,14 +12,15 @@ class BarItemView: UIView {
     // MARK: - Options
     private enum Options {
         static let minWidth: CGFloat = 44
-        static let maxWidth: CGFloat = 110
+        static let maxWidth: CGFloat = 80
     }
 
     // MARK: - Views
     lazy var indicatorView: UIView = .build()
 
     private lazy var labelTitle: UILabel = .build { label in
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.textColor = UIColor.black
     }
 
     private lazy var viewContainer: UIView = .build()
@@ -40,10 +41,10 @@ class BarItemView: UIView {
         }
     }
     
-    override var tintColor: UIColor! {
-        set { labelTitle.textColor = newValue }
-        get { return labelTitle.textColor }
-    }
+//    override var tintColor: UIColor! {
+//        set { labelTitle.textColor = newValue }
+//        get { return labelTitle.textColor }
+//    }
     
     override var backgroundColor: UIColor? {
         set { indicatorView.backgroundColor = newValue }
@@ -84,19 +85,19 @@ class BarItemView: UIView {
             indicatorView.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor),
             indicatorView.topAnchor.constraint(equalTo: viewContainer.topAnchor),
             
-            button.leadingAnchor.constraint(equalTo: viewContainer.leadingAnchor, constant: 4),
+            button.leadingAnchor.constraint(equalTo: viewContainer.leadingAnchor, constant: 0),
             button.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: -4),
             button.topAnchor.constraint(equalTo: viewContainer.topAnchor, constant: 4),
             button.heightAnchor.constraint(equalTo: button.widthAnchor),
             
             labelTitle.centerYAnchor.constraint(equalTo: viewContainer.centerYAnchor),
-            labelTitle.trailingAnchor.constraint(equalTo: viewContainer.trailingAnchor, constant: -4),
+            labelTitle.trailingAnchor.constraint(equalTo: viewContainer.trailingAnchor, constant: -5),
         ])
         
         widthConstraint = viewContainer.widthAnchor.constraint(equalToConstant: 44)
         widthConstraint?.isActive = true
         
-        titleLeadingConstraint = labelTitle.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 4)
+        titleLeadingConstraint = labelTitle.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 0)
         titleLeadingConstraint?.isActive = true
     }
 

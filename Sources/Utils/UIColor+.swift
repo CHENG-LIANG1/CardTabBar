@@ -8,9 +8,11 @@
 import UIKit
 
 extension UIColor {
-    static let barTintColor = UIColor(named: "color_background")
+
+    static let barTintColor = UIColor.init(patternImage: UIImage(named: "tabBg")!)
     static let backgroundColor = UIColor(named: "color_shadow")
     static let tintColor = UIColor(named: "color_indicator")
+    
     
     convenience init?(named: String) {
         self.init(named: named, in: .resourceBundle, compatibleWith: nil)
